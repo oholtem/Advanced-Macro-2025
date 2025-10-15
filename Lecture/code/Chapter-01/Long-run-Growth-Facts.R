@@ -1,5 +1,6 @@
 # ***************************************************************************
 # *** Advanced Macroeconomics
+# *** Figures for Chapter 1
 # *** Oliver Holtemoeller
 # *** This version: Winter 2025/2026
 # *** UTF-8
@@ -16,7 +17,7 @@ rm(list=ls())
 MyDir <- this.dir()
 setwd(MyDir)
 
-source("./MyColors.R")
+source("../MyColors.R")
 
 PWT1001 <- pwt10.01
 
@@ -48,7 +49,7 @@ P_CGDPPC <- ggplot(CGDPPC_2019, aes(x = cgdppc_bin)) +
 P_CGDPPC
 
 ggsave(
-  filename = "../../figures/fig_Distribution-by-CGDPPC.pdf",
+  filename = "../../figures/Chapter-01/fig_Distribution-by-CGDPPC.pdf",
   plot = P_CGDPPC,
   device = "pdf",
   width = 15,
@@ -85,7 +86,7 @@ P_GDPPC <- ggplot(data = GDPPC, mapping = aes(x=make_date(year=year), y=rGDP_USD
 P_GDPPC
 
 ggsave(
-  filename = "../../figures/fig_Long-run-Growth.pdf",
+  filename = "../../figures/Chapter-01/fig_Long-run-Growth.pdf",
   plot = P_GDPPC,
   device = "pdf",
   width = 15,
@@ -117,7 +118,7 @@ P_GDPPC <- ggplot(data = GDPPC, mapping = aes(x=make_date(year=year), y=rGDP_USD
 P_GDPPC
 
 ggsave(
-  filename = "../../figures/fig_Long-run-Growth-EU.pdf",
+  filename = "../../figures/Chapter-01/fig_Long-run-Growth-EU.pdf",
   plot = P_GDPPC,
   device = "pdf",
   width = 15,
@@ -149,7 +150,7 @@ P_MONEY <- ggplot(data = MONEY, mapping = aes(x=M1, y=CPI)) +
 P_MONEY
 
 ggsave(
-  filename = "../../figures/fig_Money-Growth.pdf",
+  filename = "../../figures/Chapter-01/fig_Money-Growth.pdf",
   plot = P_MONEY,
   device = "pdf",
   width = 15,
@@ -181,7 +182,7 @@ P_GOVDEBT <- ggplot(data = GOVDEBT, mapping = aes(x=make_date(year=year), y=govd
 P_GOVDEBT
 
 ggsave(
-  filename = "../../figures/fig_Government-Debt.pdf",
+  filename = "../../figures/Chapter-01/fig_Government-Debt.pdf",
   plot = P_GOVDEBT,
   device = "pdf",
   width = 15,
@@ -212,7 +213,7 @@ P_GOVDEBT <- ggplot(data = GOVDEBT, mapping = aes(x=make_date(year=year), y=govd
 P_GOVDEBT
 
 ggsave(
-  filename = "../../figures/fig_Government-Debt-EU.pdf",
+  filename = "../../figures/Chapter-01/fig_Government-Debt-EU.pdf",
   plot = P_GOVDEBT,
   device = "pdf",
   width = 15,
