@@ -5,3 +5,4 @@
 *.Rproj
 Local/*
 Lecture/data/GMD.csv
+Lecture/figures/*
