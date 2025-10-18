@@ -1,4 +1,4 @@
-% Advanced Macroeconomics Winter Term 2024/25
+% Advanced Macroeconomics Winter Term 2025/26
 % Tutorial 2 - Problem 1
 % First Version: 18-10-2024
 % Updated: 18-10-2025
@@ -46,14 +46,14 @@ plot(kVec, yVec_alpha1,'color', myColor1,'Linewidth', 2);
 plot(kVec, yVec_alpha2,'color', myColor2,'Linewidth', 2);
 plot(kVec, yVec_alpha3,'color', myColor3,'Linewidth', 2);
 hold off;
-%plot(cVec,muVec,'color','r','LineWidth',3);
+
 xlabel('k', 'FontSize', 11); % (change fontsize)
 ylabel('y(k) = k^\alpha', 'FontSize', 11);
 ylim([0, 10]); % comment this command out and see what happens
 title('Neoclassical Production Function', 'FontSize', 11);
 legend({'\alpha = 0.30', '\alpha = 0.65', '\alpha = 1.00'},'location', 'west', 'orientation', 'vertical'); % add legend, adjust location and orientation, can use latex code for greek letters
 legend boxoff; % (remove box from legend)
-grid on;
+grid on; % add grid to plot
 
 % add subtitle
 text(mean(xlim), min(ylim) - 0.1*range(ylim), ...
