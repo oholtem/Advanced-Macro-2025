@@ -7,6 +7,9 @@
 clear all; % clear workspace
 close all; % close open plots
 
+% if toolbox using range() is not available on PC no subtitle added
+toolbox_yes = 0;
+
 % decide about saving plots
 SavePlot = 0; % =0 if you don't want to save plots
 
@@ -56,9 +59,11 @@ legend boxoff; % (remove box from legend)
 grid on; % add grid to plot
 
 % add subtitle
-text(mean(xlim), min(ylim) - 0.1*range(ylim), ...
-     'note: production function in efficiency units', ...
-     'HorizontalAlignment', 'center');
+if toolbox_yes
+    text(mean(xlim), min(ylim) - 0.1*range(ylim), ...
+         'note: production function in efficiency units', ...
+         'HorizontalAlignment', 'center');
+end
 
 if SavePlot
   print(hf, '-dpng', 'production.png');
