@@ -33,7 +33,7 @@ A_h = 1;
 
 model;
 [name = 'labor supply condition']
-w = (1-tau) * c^sigma * A_h * n^varphi;
+w = (1+tau) * c^sigma * A_h * n^varphi;
 
 [name = 'production function']
 y = exp(a) * n^(1-alpha);
@@ -59,7 +59,7 @@ w = (1-alpha) * y / n;
 g = gamma * y;
 c = y - g;
 tau = g / c;
-A_h = w / (1 - tau) * c^(-sigma) * n^(-varphi);
+A_h = w / (1+tau) * c^(-sigma) * n^(-varphi);
 end;
 
 % compute steady state
