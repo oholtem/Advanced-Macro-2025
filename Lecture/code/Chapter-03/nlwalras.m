@@ -1,10 +1,10 @@
-% ==========================
+% =============================
 % nlwalras.m
 % This version: 2024-10-21
 % Oliver Holtemoeller
-% Tested: MATLAB R2024a
+% Tested: MATLAB R2023b, R2024a
 %         Octave 10.2
-% ==========================
+% =============================
 
 disp('************************************************');
 disp('Walrasian Equilibrium');
