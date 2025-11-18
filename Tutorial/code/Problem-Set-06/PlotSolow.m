@@ -62,7 +62,6 @@ data_all = {data_1, data_2, data_3};
 % Plot time paths of variables
 % ----------------------------
 
-
 for Scenario = 1:3
 
     % name of figure
