@@ -2,7 +2,7 @@
 % Solving the Log-linear Walrasian Equilibrium Model
 % This version: 2024-10-21
 % Oliver Holtemoeller
-% Tested: MATLAB R2024a
+% Tested: MATLAB 2023b, R2024a
 %         Octave 10.2
 % ==================================================
 

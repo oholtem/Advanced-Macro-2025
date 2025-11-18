@@ -1,6 +1,6 @@
 % Solving Linear Systems of Equations
 % This version: 25.10.2025
-% Tested: Octave 10.2
+% Tested: Octave 10.2, Matlab 2023b
 
 % Define matrices
 A = [ 2, 3; 3, -4 ];

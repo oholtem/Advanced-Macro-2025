@@ -3,7 +3,7 @@
 % General Equilibrium in the Two-Period Model
 % This version: 26.10.2025
 % Author: Oliver Holtemoeller
-% Tested: Octave 10.2, Matlab R2023b
+% Tested: Octave 9.2, 10.2, Matlab R2023b
 % ===============================================
 
 clear all;

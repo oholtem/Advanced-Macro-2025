@@ -1,5 +1,6 @@
 // Non-Linear Static Equilibrium Model
 // Oliver Holtemoeller (v1) 25.10.2025
+// Tested: Dynare 5.2, 6.4
 
 // 1. Block: Definition of Variables and Parameters
 // Endogenous variables:
