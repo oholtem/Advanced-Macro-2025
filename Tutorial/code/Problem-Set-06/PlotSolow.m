@@ -3,7 +3,7 @@
 %------------------------------------------------------%
 
 disp('************************************************');
-disp('Run Solow Growth Model');
+disp('Plot Solow Growth Model');
 
 clear all;
 close all;
