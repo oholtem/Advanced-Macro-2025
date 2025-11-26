@@ -100,6 +100,7 @@ for Scenario = 1:3
         title(varname);
         xlabel('t');
         ylabel(y_label);
+        xlim([0, length(irf)]);
         grid on;
     end
     
