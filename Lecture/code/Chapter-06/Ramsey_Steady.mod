@@ -21,7 +21,7 @@ model;
 // Consumption Euler Equation
 betaP*(cV(+1)/cV)^(-thetaP)*(alphaP*ZV(+1)*kV^(alphaP-1)+1-deltaP) = 1;
 // Resource Constraint
-ZV*kV(-1)^alphaP - cV - kV + (1-deltaP)*kV(-1);
+ZV*kV(-1)^alphaP - cV - kV + (1-deltaP)*kV(-1) = 0;
 end;
 
 // Initialization Block

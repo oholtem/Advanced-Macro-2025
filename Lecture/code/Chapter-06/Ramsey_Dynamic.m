@@ -9,7 +9,7 @@ clear all;
 close all;
 
 DoSavePlots = 0;
-ShockSpec   = 2;
+ShockSpec   = 1;
 
 % Some useful defintions
 % ----------------------
