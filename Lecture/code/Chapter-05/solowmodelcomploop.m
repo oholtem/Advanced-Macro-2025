@@ -23,7 +23,7 @@ function [ N, A, K, Y, C, Q, r, w ] = solowmodelcomploop(params, initvals)
       Q(t)   = s*Y(t);
       K(t)   = (1-delta)*K(t-1) + Q(t);
       C(t)   = Y(t) - Q(t);
-      r(t)   = alpha*Y(t)/K(t-1);
+      r(t)   = alpha*Y(t)/K(t-1)-delta;
       w(t)   = (1-alpha)*Y(t)/N(t);
   end
 end

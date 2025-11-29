@@ -2,7 +2,7 @@
 % Solow Model: Competitive Markets, Real Interest Rate, and Real Wages
 % This version: 16.11.2025
 % Oliver Holtemoeller
-% Tested: Octave 10.2.0, MATLAB 2024a
+% Tested: Octave 9.2.0, Octave 10.2.0, MATLAB 2024a
 % =====================================================================
 
 clear all;

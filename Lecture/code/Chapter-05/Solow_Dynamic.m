@@ -1,8 +1,8 @@
 % ===============================================
 % Dynamic Simulation of Solow Model
-% This version: 16.11.2025
+% This version: 18.11.2025
 % Oliver Holtemoeller
-% Tested: Octave 10.2.0, MATLAB 2024a
+% Tested: Octave 9.2.0, 10.2.0, MATLAB 2024a
 % ===============================================
 
 clear all;
@@ -31,7 +31,7 @@ BfVermillon    = [ 213,  94,   0 ]/255;
 BfRedishPurple = [ 204, 121, 167 ]/255;
 
 % Line Properties
-StdLineWidth = 4;
+StdLineWidth = 2;
 
 % Parameters
 params.alpha = 0.3;
@@ -68,10 +68,10 @@ initvals.K = ky*initvals.Y;
 initvals.A = (((initvals.K/(1+params.a)/(1+params.n))^(-params.alpha)*initvals.Y)/initvals.Z)^(1/(1-params.alpha))/initvals.N;
 initvals.Q = params.s*initvals.Y;
 initvals.C = initvals.Y - initvals.Q;
-initvals.r = params.alpha*initvals.Y/initvals.K;
+initvals.r = params.alpha*initvals.Y/initvals.K-params.delta;
 initvals.w = (1-params.alpha)*initvals.Y/initvals.N;
 
-params.T   = 400;
+params.T   = 100;
 [ sim_0.N, sim_0.A, sim_0.K, sim_0.Y, sim_0.C, sim_0.Q, sim_0.r, sim_0.w ] = solowmodelcomploop(params, initvals);
 
 % Simulate convergence from old steady state to new steady state: Increase in savings rate s
@@ -130,6 +130,8 @@ if DoPlotSavingsRate,
   hold on;
   plot(Time, sim_0.K, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, sim_1.K, 'color', BfOrange, 'LineWidth', StdLineWidth);
+  hold off;
+  xlim([0,TT]);
   title('Capital');
   legend('Baseline', 'Increase in s', 'Location', 'northwest');
 
@@ -138,6 +140,7 @@ if DoPlotSavingsRate,
   plot(Time, sim_0.K./sim_0.A./sim_0.N, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, sim_1.K./sim_1.A./sim_1.N, 'color', BfOrange, 'LineWidth', StdLineWidth);
   hold off;
+  xlim([0,TT]);
   title('Capital per efficiency unit of labor');
 
   subplot(2,3,3);
@@ -145,6 +148,7 @@ if DoPlotSavingsRate,
   plot(Time, sim_0.Y, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, sim_0.Y, 'color', BfOrange, 'LineWidth', StdLineWidth);
   hold off;
+  xlim([0,TT]);
   title('Output');
 
   subplot(2,3,4);
@@ -152,6 +156,7 @@ if DoPlotSavingsRate,
   plot(Time, sim_0.Y./sim_0.A./sim_0.N, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, sim_1.Y./sim_1.A./sim_1.N, 'color', BfOrange, 'LineWidth', StdLineWidth);
   hold off;
+  xlim([0,TT]);
   title('Output per efficiency unit of labor');
 
   subplot(2,3,5);
@@ -159,6 +164,7 @@ if DoPlotSavingsRate,
   plot(Time, sim_0.C, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, sim_1.C, 'color', BfOrange, 'LineWidth', StdLineWidth);
   hold off;
+  xlim([0,TT]);
   title('Consumption');
 
   subplot(2,3,6);
@@ -166,6 +172,7 @@ if DoPlotSavingsRate,
   plot(Time, sim_0.C./sim_0.N, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, sim_1.C./sim_1.N, 'color', BfOrange, 'LineWidth', StdLineWidth);
   hold off;
+  xlim([0,TT]);
   title('Output per worker');
 
   fig_counter = fig_counter + 1;
@@ -174,6 +181,8 @@ if DoPlotSavingsRate,
   hold on;
   plot(Time, 100*sim_1.K./sim_0.K-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
+  hold off;
+  xlim([0,TT]);
   title('Capital');
   ylabel('Dev. in %');
 
@@ -182,6 +191,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_1.Y./sim_0.Y-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Output');
   ylabel('Dev. in %');
 
@@ -190,6 +200,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_1.C./sim_0.C-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Consumption');
   ylabel('Dev. in %');
 
@@ -198,6 +209,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*(sim_1.r-sim_0.r), 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Real interest rate');
   ylabel('Dev. in pp.');
 
@@ -206,14 +218,16 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_1.w./sim_0.w-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Real wage');
   ylabel('Dev. in %');
 
   subplot(2,3,6);
   hold on;
-  plot(Time, [0, ones(1,TT-1)*(params_s.s-params.s)], 'color', BfBlue, 'LineWidth', StdLineWidth);
+  plot(Time, [0, 100*ones(1,TT-1)*(params_s.s-params.s)], 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Savings rate');
   ylabel('Dev. in pp');
 
@@ -227,6 +241,8 @@ if DoPlotSavingsRate,
   hold on;
   plot(Time, 100*sim_2.K./sim_0.K-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
+  hold off;
+  xlim([0,TT]);
   title('Capital');
   ylabel('Dev. in %');
 
@@ -235,6 +251,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_2.Y./sim_0.Y-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Output');
   ylabel('Dev. in %');
 
@@ -243,6 +260,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_2.C./sim_0.C-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Consumption');
   ylabel('Dev. in %');
 
@@ -251,6 +269,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*(sim_2.r-sim_0.r), 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Real interest rate');
   ylabel('Dev. in pp.');
 
@@ -259,6 +278,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_2.w./sim_0.w-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Real wage');
   ylabel('Dev. in %');
 
@@ -267,6 +287,7 @@ if DoPlotSavingsRate,
   plot(Time, [0, ones(1,TT-1)*(100*params_Z.Z/params.Z-100)], 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Total factor productivity');
   ylabel('Dev. in %');
 
@@ -280,6 +301,8 @@ if DoPlotSavingsRate,
   hold on;
   plot(Time, 100*sim_3.K./sim_0.K-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
+  hold off;
+  xlim([0,TT]);
   title('Capital');
   ylabel('Dev. in %');
 
@@ -288,6 +311,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_3.Y./sim_0.Y-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Output');
   ylabel('Dev. in %');
 
@@ -296,6 +320,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_3.C./sim_0.C-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Consumption');
   ylabel('Dev. in %');
 
@@ -304,6 +329,7 @@ if DoPlotSavingsRate,
   plot(Time, 100*(sim_3.r-sim_0.r), 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Real interest rate');
   ylabel('Dev. in pp.');
 
@@ -312,14 +338,16 @@ if DoPlotSavingsRate,
   plot(Time, 100*sim_3.w./sim_0.w-100, 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Real wage');
   ylabel('Dev. in %');
 
   subplot(2,3,6);
   hold on;
-  plot(Time, [0, ones(1,TT-1)*(params_n.n-params.n)], 'color', BfBlue, 'LineWidth', StdLineWidth);
+  plot(Time, [0, 100*ones(1,TT-1)*(params_n.n-params.n)], 'color', BfBlue, 'LineWidth', StdLineWidth);
   plot(Time, zeros(TT,1), 'color', BfBlack, 'LineWidth', 1);
   hold off;
+  xlim([0,TT]);
   title('Population growth rate');
   ylabel('Dev. in pp.');
 
