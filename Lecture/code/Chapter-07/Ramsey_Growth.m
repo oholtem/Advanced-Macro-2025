@@ -12,7 +12,7 @@ close all;
 % addpath c:/dynare/5.2/matlab
 
 DoSavePlots = 0;
-ShockSpec   = 3;
+ShockSpec   = 1;
 
 % Some useful defintions
 % ----------------------
