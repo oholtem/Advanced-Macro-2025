@@ -9,7 +9,7 @@ varexo eps_a;
 parameters alpha, rho, delta, b, eta_a, gamma_a, gamma_n;
 alpha = 0.3;
 rho = 0.02;
-b = 2.5;
+b = 2;
 delta = 0.03;
 eta_a = 0.9;
 gamma_n = 0;
