@@ -69,7 +69,6 @@ if DefineVars,
     obs.YN = VGRDE.BIP_SA_DE;
     Baseyear = find(Time>=2020 & Time<2021);
     BIPMean = mean(obs.YN(Baseyear));
-    obs.Y = VGRDE.BIPVOL_SA_DE*BIPMean/100;
     obs.Y = VGRDE.BIPVOL_SA_DE*BIPMean/100; 
     [obs.ytrend, obs.y] = hpfilter(log(obs.Y), smoothing=1600);
     % obs.ytrend = log(obs.Y)-log(obs.y);
