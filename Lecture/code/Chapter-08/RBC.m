@@ -119,7 +119,7 @@ if PlotOverview,
     hf = figure(fig_counter);
     subplot(2,3,1);
     hold on;
-    plot(Time, obs.y, 'color', BfBlue, 'LineWidth', StdLineWidth);
+    plot(Time, 100*obs.y, 'color', BfBlue, 'LineWidth', StdLineWidth);
     plot(Time, zeros(length(Time),1), 'color', 'black', 'LineWidth', StdLineWidth/4);
     hold off;
     ylabel('% dev.');
@@ -127,7 +127,7 @@ if PlotOverview,
     xlim([Time(1), Time(end)]);
     subplot(2,3,2);
     hold on;
-    plot(Time, obs.c, 'color', BfBlue, 'LineWidth', StdLineWidth);
+    plot(Time, 100*obs.c, 'color', BfBlue, 'LineWidth', StdLineWidth);
     plot(Time, zeros(length(Time),1), 'color', 'black', 'LineWidth', StdLineWidth/4);
     hold off;
     ylabel('% dev.');
@@ -135,7 +135,7 @@ if PlotOverview,
     title('Consumption');
     subplot(2,3,3);
     hold on;
-    plot(Time, obs.i, 'color', BfBlue, 'LineWidth', StdLineWidth);
+    plot(Time, 100*obs.i, 'color', BfBlue, 'LineWidth', StdLineWidth);
     plot(Time, zeros(length(Time),1), 'color', 'black', 'LineWidth', StdLineWidth/4);
     hold off;
     ylabel('% dev.');
@@ -143,7 +143,7 @@ if PlotOverview,
     title('Investment');
     subplot(2,3,4);
     hold on;
-    plot(Time, obs.n, 'color', BfBlue, 'LineWidth', StdLineWidth);
+    plot(Time, 100*obs.n, 'color', BfBlue, 'LineWidth', StdLineWidth);
     plot(Time, zeros(length(Time),1), 'color', 'black', 'LineWidth', StdLineWidth/4);
     hold off;
     ylabel('% dev.');
@@ -151,7 +151,7 @@ if PlotOverview,
     title('Hours Worked');
     subplot(2,3,5);
     hold on;
-    plot(Time, obs.w, 'color', BfBlue, 'LineWidth', StdLineWidth);
+    plot(Time, 100*obs.w, 'color', BfBlue, 'LineWidth', StdLineWidth);
     plot(Time, zeros(length(Time),1), 'color', 'black', 'LineWidth', StdLineWidth/4);
     hold off;
     ylabel('% dev.');
@@ -159,7 +159,7 @@ if PlotOverview,
     title('Real Wage');
     subplot(2,3,6);
     hold on;
-    plot(Time, obs.x, 'color', BfBlue, 'LineWidth', StdLineWidth);
+    plot(Time, 100*obs.x, 'color', BfBlue, 'LineWidth', StdLineWidth);
     plot(Time, zeros(length(Time),1), 'color', 'black', 'LineWidth', StdLineWidth/4);
     hold off;
     ylabel('% dev.');
@@ -176,11 +176,11 @@ if DoDynare,
   Sigma = oo_.var;
   D=diag(1./sqrt(diag(Sigma)));
   Rho = D*Sigma*D;
-  rhosim = Rho([4, 3, 2, 9, 5, 8],4);
+  rhosim = Rho([4, 3, 2, 9, 5, 8],4); 
   D = sqrt(diag(Sigma));
   sdsim = D([4, 3, 2, 9, 5, 8]);
   
-  fig_counter = 9;
+  fig_counter = 3;
   
   fig_counter = fig_counter + 1;
   hf = figure(fig_counter);
