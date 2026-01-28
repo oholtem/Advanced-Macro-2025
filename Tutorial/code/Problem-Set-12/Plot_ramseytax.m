@@ -7,7 +7,7 @@
 % ----------------------------------------------------------------------------- %
 
 close all;
-clear all;
+%clear all;
 
 % color pallet from lecture
 BfBlack        = [   0,   0,   0 ]/255;
@@ -20,10 +20,10 @@ BfVermillon    = [ 213,  94,   0 ]/255;
 BfRedishPurple = [ 204, 121, 167 ]/255;
 
 % run dynare code
-dynare ramseytaxsensitivity; % adjusted code file ramseytax.mod from lecture chapter 11
+%dynare ramseytaxsensitivity; % adjusted code file ramseytax.mod from lecture chapter 11
 
 % define vector with variables that should be plotted
-vars = {'k', 'y', 'c', 'rnet', 'r', 's', 'w', 'gy'}; 
+vars = {'k', 'y', 'c', 'rnet', 'r', 's', 'w'}; 
 
 fig_counter = 0; 
 
@@ -40,9 +40,9 @@ for varnum = 1:length(vars)
     hf = figure(fig_counter); 
 
     hold on;
-    plot(period, ts.([char(var) '_sigma1']), 'color', BfBlue, 'Linewidth', width); % *100 because in percent
-    plot(period, ts.([char(var) '_sigma2']), 'color', BfOrange, 'Linewidth', width, 'LineStyle', '--'); 
-    plot(period, ts.([char(var) '_sigma3']), 'color', BfRedishPurple, 'Linewidth', width, 'LineStyle', ':'); 
+    plot(period, 100*ts.([char(var) '_sigma1'])/ts.([char(var) '_sigma1'])(1) - 100, 'color', BfBlue, 'Linewidth', width); % *100 because in percent
+    plot(period, 100*ts.([char(var) '_sigma2'])/ts.([char(var) '_sigma2'])(1) - 100, 'color', BfOrange, 'Linewidth', width, 'LineStyle', '--'); 
+    plot(period, 100*ts.([char(var) '_sigma3'])/ts.([char(var) '_sigma3'])(1) - 100, 'color', BfRedishPurple, 'Linewidth', width, 'LineStyle', ':'); 
     set(gca, 'ygrid', 'on');
     set(gca, 'xgrid', 'on');
     hold off;
