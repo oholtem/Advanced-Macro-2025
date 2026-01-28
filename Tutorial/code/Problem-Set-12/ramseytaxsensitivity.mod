@@ -47,34 +47,6 @@ rnet = (1-tf)*(1-tk)*r;
 
 end;
 
-initval;
-
-k=5.3;
-c=1.38;
-y=1.7;
-Z=1;
-r=0.075;
-w=1.16;
-tf=0;
-tk=0;
-
-end;
-
-steady;
-
-endval;
-
-k=5.3;
-c=1.38;
-y=1.7;
-Z=1;
-r=0.075;
-w=1.16;
-tf=0.10;
-tk=0.0;
-
-end;
-
 % ----------------------------------------------------------------------------- %
 % Loop for simulating the model with different values of sigma
 
@@ -87,7 +59,35 @@ for ii = 1:length(sigma_vec) % iterate over all elements in sigma_vec
     sigma = sigma_vec(ii); % sigma = certain value in every loop iteration
     disp(['sigma = ', num2str(sigma)]); % optionally to track iterations
 
-    steady; % calculate steady state with current value of sigma
+    initval;
+    
+    k=5.3;
+    c=1.38;
+    y=1.7;
+    Z=1;
+    r=0.075;
+    w=1.16;
+    tf=0;
+    tk=0;
+    
+    end;
+    
+    steady; % calculate initial steady state with current value of sigma
+    
+    endval;
+    
+    k=5.3;
+    c=1.38;
+    y=1.7;
+    Z=1;
+    r=0.075;
+    w=1.16;
+    tf=0.10;
+    tk=0.0;
+    
+    end;
+
+    steady; % calculate final steady state with current value of sigma
     
     % perfect foresight simulation with current value of sigma
     perfect_foresight_setup(periods=100);
